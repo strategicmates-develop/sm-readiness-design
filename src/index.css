@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;600&family=Inter:wght@400;600;700&display=swap');
+@import "tailwindcss";
+
+/* Strategic Mates brand tokens (official brand guide) used by the readiness wizard. */
+@theme {
+  --color-brand-navy: #153f58;
+  --color-brand-navy-deep: #08293d;
+  --color-brand-blue-mid: #5f96b5;
+  --color-brand-blue-light: #dbe6f3;
+  --color-brand-gold-main: #d09700;
+  --color-brand-gold-dark: #a77e00;
+  --color-brand-gold-light: #ebb944;
+  --color-ink: #000000;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-display: 'Inter', system-ui, sans-serif;
+  --font-accent: 'Archivo', 'Inter', system-ui, sans-serif;
+}
+
+@layer base {
+  button {
+    cursor: pointer;
+  }
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Screen transition of the public readiness assessment. */
+@keyframes readiness-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.readiness-enter {
+  animation: readiness-enter 320ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .readiness-enter {
+    animation: none;
+  }
+}
+
+/* The readiness result is a document: print it on white without chrome. */
+@media print {
+  .readiness-print-hide {
+    display: none !important;
+  }
+
+  .readiness-print-root,
+  .readiness-print-root * {
+    box-shadow: none !important;
+    animation: none !important;
+  }
+
+  body,
+  .readiness-shell {
+    background: #fff !important;
+  }
+
+  .readiness-print-root {
+    max-width: none !important;
+  }
+
+  .readiness-print-root section {
+    break-inside: avoid;
+  }
+}
+
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
